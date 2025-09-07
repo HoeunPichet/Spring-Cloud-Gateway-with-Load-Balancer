@@ -6,21 +6,21 @@ spring:
     name: api-gateway
 
   # ✅ WITH spring-cloud-starter-loadbalancer (RECOMMENDED)
-  cloud:
-    gateway:
-      server:
-        webflux:
-          routes:
-            - id: user-service-route
-              uri: lb://user-service
-              predicates:
-                - Path=/api/users/**   # matches /api/users/...
-              filters:
-                - StripPrefix=1        # removes /api
-                - name: CustomHeaderFilter
-                  args:
-                    requestValue: HelloRequest
-                    responseValue: HelloResponse
+#  cloud:
+#    gateway:
+#      server:
+#        webflux:
+#          routes:
+#            - id: user-service-route
+#              uri: lb://user-service
+#              predicates:
+#                - Path=/api/users/**   # matches /api/users/...
+#              filters:
+#                - StripPrefix=1        # removes /api
+#                - name: CustomHeaderFilter
+#                  args:
+#                    requestValue: HelloRequest
+#                    responseValue: HelloResponse
 #          default-filters:
 #            - AddRequestHeader=X-Global-Request, MyGateway
 #            - AddResponseHeader=X-Global-Response, Success
@@ -49,6 +49,23 @@ spring:
 #                - Weight=group1, 100  # 50% traffic
 #              filters:
 #                - StripPrefix=1
+
+# Spring MVC
+#  cloud:
+#    gateway:
+#      server:
+#        webmvc:
+#          routes:
+#            - id: user-service-route
+#              uri: lb://user-service
+#              predicates:
+#                - Path=/api/users/**   # matches /api/users/...
+#              filters:
+#                - StripPrefix=1        # removes /api
+  #              - name: CustomHeaderFilter
+  #                args:
+  #                  requestValue: HelloRequest
+  #                  responseValue: HelloResponse
 
 # If use with Eureka
 eureka:

@@ -13,15 +13,5 @@ public class ApiGetwayApplication {
     public static void main(String[] args) {
         SpringApplication.run(ApiGetwayApplication.class, args);
     }
-//    @Component
-//    public class LoggingFilter implements GlobalFilter {
-//        private static final Logger log = LoggerFactory.getLogger(LoggingFilter.class);
-//
-//        @Override
-//        public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-//            URI requestUri = exchange.getRequest().getURI();
-//            log.info("Routing to: {}", requestUri);
-//            return chain.filter(exchange);
-//        }
-//    }
+
 }
