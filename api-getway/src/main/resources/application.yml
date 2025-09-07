@@ -50,7 +50,19 @@ spring:
 #              filters:
 #                - StripPrefix=1
 
-# Spring MVC
+
+# With locator
+#  cloud:
+#    gateway:
+#      server:
+#        webflux:
+#          discovery:
+#            locator:
+#              enabled: true
+#              lower-case-service-id: true
+
+
+  # Spring MVC
 #  cloud:
 #    gateway:
 #      server:
