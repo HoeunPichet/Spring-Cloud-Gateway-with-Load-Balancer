@@ -1,0 +1,64 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: api-gateway
+
+  # ✅ WITH spring-cloud-starter-loadbalancer (RECOMMENDED)
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: user-service-route
+              uri: lb://user-service
+              predicates:
+                - Path=/api/users/**   # matches /api/users/...
+              filters:
+                - StripPrefix=1        # removes /api
+                - name: CustomHeaderFilter
+                  args:
+                    requestValue: HelloRequest
+                    responseValue: HelloResponse
+#          default-filters:
+#            - AddRequestHeader=X-Global-Request, MyGateway
+#            - AddResponseHeader=X-Global-Response, Success
+#            # Sets a default request size limit (for file uploads, etc.)
+#            - name: RequestSize
+#              args:
+#                maxSize: 5000000  # 5 MB
+
+  # Option 2: Multiple static instances (manual load balancing)
+#  cloud:
+#    gateway:
+#      server:
+#        webflux:
+#          routes:
+#            - id: user-service-route-1
+#              uri: http://localhost:8081  # Instance 1
+#              predicates:
+#                - Path=/api/users/**
+#                - Weight=group1, 100  # 50% traffic
+#              filters:
+#                - StripPrefix=1
+#            - id: user-service-route-2
+#              uri: http://localhost:8082  # Instance 2
+#              predicates:
+#                - Path=/api/users/**
+#                - Weight=group1, 100  # 50% traffic
+#              filters:
+#                - StripPrefix=1
+
+# If use with Eureka
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
