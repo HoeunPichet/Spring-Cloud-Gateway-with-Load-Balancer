@@ -17,6 +17,7 @@ spring:
                 - Path=/api/users/**   # matches /api/users/...
               filters:
                 - StripPrefix=1        # removes /api
+#                - RewritePath=/api/(?<segment>.*), /$\{segment}
                 - name: CustomHeaderFilter
                   args:
                     requestValue: HelloRequest
