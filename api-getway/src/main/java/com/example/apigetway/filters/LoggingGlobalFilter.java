@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.server.ServerWebExchange;
 import reactor.core.publisher.Mono;
 
-//@Component
+@Component
 @Order(1)  // Lower value = higher priority (executed earlier)
 public class LoggingGlobalFilter implements GlobalFilter {
 

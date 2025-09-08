@@ -88,6 +88,13 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
 
+#custom:
+#  user-service:
+#    instances:
+#      - host: localhost
+#        port: 8081
+#      - host: localhost
+#        port: 8082
 
 logging:
   level:
